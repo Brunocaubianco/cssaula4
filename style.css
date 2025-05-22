@@ -1,0 +1,126 @@
+/* Estilo moderno, esportivo e colorido */
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #0f0f0f, #1a1a1a);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    width: 90%;
+    max-width: 600px;
+    padding: 40px 30px;
+    background: #141414;
+    border-radius: 15px;
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.1);
+    text-align: center;
+    border: 1px solid #2c2c2c;
+}
+
+h1 {
+    font-size: 2.7rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: linear-gradient(90deg, #00ffff, #00ff99);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#data {
+    font-size: 1rem;
+    color: #ccc;
+    margin-bottom: 0.5rem;
+}
+
+#relogio {
+    font-size: 3.5rem;
+    margin-bottom: 2rem;
+    font-weight: bold;
+    color: #00ffee;
+    text-shadow: 0 0 10px #00ffee88;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        text-shadow: 0 0 10px #00ffee88;
+    }
+    50% {
+        text-shadow: 0 0 20px #00ffee;
+    }
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #444;
+    margin: 2rem 0;
+}
+
+#cronometro {
+    font-size: 3.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #00aeff;
+    text-shadow: 0 0 15px #008cffaa;
+}
+
+#status {
+    font-size: 1rem;
+    font-style: italic;
+    color: #aaa;
+    margin-bottom: 1.5rem;
+}
+
+.botoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+}
+
+button {
+    padding: 12px 24px;
+    border: none;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 25px;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #fff;
+    background: linear-gradient(135deg, #0d3a7e, #00a2ff);
+    box-shadow: 0 4px 15px rgba(0, 38, 255, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(255, 0, 128, 0.4);
+}
+
+button:active {
+    transform: scale(0.96);
+}
+
+@media (max-width: 500px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    #relogio, #cronometro {
+        font-size: 2.5rem;
+    }
+
+    button {
+        font-size: 0.9rem;
+        padding: 10px 20px;
+    }
+}

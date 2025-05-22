@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Controle de Tempo</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+    <div class="container">
+        <h1>Controle de Tempo</h1>
+        
+        <div class="data-hora">
+            <p id="data"></p>
+            <h2 id="relogio">00:00:00</h2>
+        </div>
+
+        <hr />
+
+        <div class="cronometro">
+            <h2 id="cronometro">00:00:00</h2>
+            <p id="status">Parado</p>
+            <div class="botoes">
+                <button onclick="iniciar()">Iniciar</button>
+                <button onclick="pausar()">Pausar</button>
+                <button onclick="retomar()">Retomar</button>
+                <button onclick="zerar()">Zerar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Relógio
+        function atualizarRelogio() {
+            const agora = new Date();
+            const horas = agora.getHours().toString().padStart(2, '0');
+            const minutos = agora.getMinutes().toString().padStart(2, '0');
+            const segundos = agora.getSeconds().toString().padStart(2, '0');
+            const data = agora.toLocaleDateString('pt-BR', {
+                weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'
+            });
+
+            document.getElementById("relogio").innerText = `${horas}:${minutos}:${segundos}`;
+            document.getElementById("data").innerText = data;
+        }
+
+        setInterval(atualizarRelogio, 1000);
+        atualizarRelogio();
+
+        // Cronômetro
+        let segundosCrono = 0;
+        let intervalo = null;
+
+        function formatarTime(segundos) {
+            const h = String(Math.floor(segundos / 3600)).padStart(2, '0');
+            const m = String(Math.floor((segundos % 3600) / 60)).padStart(2, '0');
+            const s = String(segundos % 60).padStart(2, '0');
+            return `${h}:${m}:${s}`;
+        }
+
+        function atualizarCronometro() {
+            document.getElementById("cronometro").innerText = formatarTime(segundosCrono);
+        }
+
+        function iniciar() {
+            if (!intervalo) {
+                segundosCrono = 0;
+                atualizarCronometro();
+                document.getElementById("status").innerText = "Rodando";
+                intervalo = setInterval(() => {
+                    segundosCrono++;
+                    atualizarCronometro();
+                }, 1000);
+            }
+        }
+
+        function pausar() {
+            if (intervalo) {
+                clearInterval(intervalo);
+                intervalo = null;
+                document.getElementById("status").innerText = "Pausado";
+            }
+        }
+
+        function retomar() {
+            if (!intervalo && segundosCrono > 0) {
+                intervalo = setInterval(() => {
+                    segundosCrono++;
+                    atualizarCronometro();
+                }, 1000);
+                document.getElementById("status").innerText = "Rodando";
+            }
+        }
+
+        function zerar() {
+            pausar();
+            segundosCrono = 0;
+            atualizarCronometro();
+            document.getElementById("status").innerText = "Zerado";
+        }
+    </script>
+</body>
+</html>
